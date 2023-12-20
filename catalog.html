@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="author" content="UTRUST 信諾科技" />
+
+    <title>Rita's collection box catalog</title>
+
+    <link rev="made" href="http://www.utrust.com.tw/" />
+    <!-- <link rel="shortcut icon" href='../images/favicon.ico' /> 
+    <link rel="image_src" type="image/jpeg" href='images/favicon.ico' />-->
+    <!--common-->
+    <link rel="stylesheet" href="utcCore/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="utcCore/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="utcCore/ciaoyukit/css/ciaoyu.min.css" />
+    <link rel="stylesheet" href="utcCore/ciaoyukit/css/package.css" />
+    <link rel="stylesheet" href="utcCore/uDefault/css/uDefault.css" />
+
+
+    <link rel="stylesheet" href="css/catalog.css" />
+</head>
+
+<body>
+    <header>
+        <h1 class="site-title">Snippets Style Catalog</h1>
+        <p class="mb-0 small">以公司UIKIT為基礎建置的snippets，收錄比較常用的components樣式</p>
+    </header>
+    <div class="content-wrapper">
+        <div class="content-header mb-4 d-none">
+            <h3 class="content-header-title">目錄 (功能目錄)</h3>
+        </div>
+        <!-- content-header END  -->
+        <div class="content-body">
+            <!-- 主內容開始 -->
+            <div class="row row-offcanvas row-offcanvas-left">
+                <div class="col-xs-6 col-md-3 sidebar-offcanvas">
+                    <div class="sectionNav-wrap">
+                        <!-- <h3 class="content-header-title">component</h3> -->
+                        <nav class="section-nav">
+                            <ul>
+                                <li class="toc-entry">
+                                    <a href="#sec1" class="active">
+                                        <i class="fal fa-clone mr-2"></i>Basic component</a>
+                                    <!-- <ul>
+                                            <li><a href="http://">table</a></li>
+                                            <li><a href="http://">list</a></li>
+                                        </ul> -->
+                                </li>
+                                <li class="toc-entry">
+                                    <a href="#sec2">
+                                        <i class="fal fa-clone mr-2"></i>Extension/Plugins 套件</a>
+                                </li>
+                                <li class="toc-entry">
+                                    <a href="#sec3">
+                                        <i class="fal fa-clone mr-2"></i>navigation/menu 選單</a>
+                                </li>
+                                <li class="toc-entry">
+                                    <a href="#sec4">
+                                        <i class="fal fa-clone mr-2"></i>other 其他應用</a>
+                                </li>
+                            </ul>
+                            <div id="btn-collapse-sec" class="btn btn-outline-secondary btn-block btn-collapseall">
+                                <i class="fas fa-minus"></i> 全部收合
+                            </div>
+                            <div id="btn-expand-sec" class="btn btn-outline-secondary btn-block btn-extendedeall">
+                                <i class="fas fa-plus"></i> 全部打開
+                            </div>
+
+                            <div class="py-1 px-5 my-2 w-auto d-inline-block border border-info">Other</div>
+                            <ol class="p-0">                               
+                                <li class="toc-entry ">
+                                    <a href="https://utrusttaiwan.github.io/UIKits/theme-utrust/pages/ui/inputs.htm" target="_blank"
+                                        class="text-info">UTC UIkits
+                                        <i class="far fa-external-link" data-toggle="tooltip" data-placement="top" title=""
+                                            data-original-title="另開視窗"></i>
+                                    </a>
+                                </li>
+                            </ol>
+                            
+                            <div class="card my-5 font-medium-2 d-none">
+                                <div class="card-body">
+                                    <div class="card-title">備註</div>
+                                    <p><span class="badge badge-dark mx-2">date</span> prototype已完成</p>
+                                    <p><span class="badge badge-success mx-2">date</span>持續進行中，若有新增項目則補上</p>
+                                    <p><span class="badge badge-danger mx-2">date</span>有誤，待修正</p>
+                                    <p><span class="badge badge-primary mx-2">date</span>已完成程式化</p>
+                                    <p><span class="badge badge-secondary mx-2">date</span>無須prototype頁面，或已不需要此頁</p>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="catog-other my-5">
+                            <ol class=" pl-4">
+                                <li>
+                                    <h5>無障礙筆記</h5>
+                                    <a href="https://docs.google.com/document/d/1wdSv6c7h1xWyZM9nk_8ZtNMZ-XYSHSvpRtINbuP7gK0/edit#"
+                                        target="_blank">無障礙</a>
+                                </li>
+                                <li>
+                                    <h5>效能優化</h5>
+                                    <a href="https://docs.google.com/document/d/15q8KGw-JGl7pGC9HzJ9Il9FWgYJWsTOvAwsp98YJDjI/edit?usp=sharing"
+                                        target="_blank">效能優化</a>
+                                </li>
+                                <li>
+                                    <h5>無法歸類的</h5>
+                                    <a href="https://wweb.dev/resources/css-separator-generator/"
+                                        target="_blank">CSS形狀設定</a>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-9">
+                    <div class="d-block d-md-none">
+                        <button type="button" id="btnSub" class="btn btn-primary btn-lg btn-block"
+                            data-toggle="offcanvas" style="margin-bottom: 30px;">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fal fa-bars" data-toggle="tooltip" data-placement="top" title=""
+                                        data-original-title="其他選項"></i>
+                                </div>
+                                <div class="col-11">
+                                    <div class="btn-title d-inline">其他選項</div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="sections accordion" id="accordionCatalog">
+                        <section id="sec1">
+                            <div class="section-header" id="heading1">
+                                <h4 class="section-title">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                        <i class="fas fa-minus"></i>
+                                        <i class="fas fa-plus"></i>
+                                        <i class="fal fa-clone ml-2 mr-1"></i>
+                                        <span>Basic component</span>
+                                    </button>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="collapse show" aria-labelledby="heading1"
+                                data-parent="#accordionCatalog">
+                                <div class="section-body">
+                                    <!-- <h6>標題</h6> -->
+                                    <div class="row">
+                                        <!--Content-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">Content <span
+                                                            class="badge badge-success">完成</span></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <dl>
+                                                        <dt>Lists basic</dt>
+                                                        <dd>
+                                                            <a href="lists-basic.html" target="_blank"
+                                                                title="lists-basic.html">Lists basic</a>
+                                                            <div class="text-muted small">基本的ul li / ol li / dl dt dd等樣式
+                                                            </div>
+                                                        </dd>
+                                                        <!-- <dt>Lists Group</dt>
+                                                        <dd>
+                                                            <a href="#" target="_blank" title="lists-group.html">Lists
+                                                                Group</a>
+                                                        </dd> -->
+                                                        <dt>應用-breadcrumb</dt>
+                                                        <dd>
+                                                            <a href="breadcrumb.html" target="_blank"
+                                                                title="lists-basic.html">Breadcrumb</a>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--button-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">Button按鈕</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="button.html" target="_blank"
+                                                                title="tables-basic.html">AA</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Form-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">Form表單</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="checks-radios.html" target="_blank"
+                                                                title="checks-radios.html">Checkbox / Radio</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--table-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">Table表格 <span
+                                                            class="badge badge-success">完成</span></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="[table]tables-basic.html" target="_blank"
+                                                                title="tables-basic.html">Basic</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="[table]tables-rwd.html" target="_blank"
+                                                                title="tables-rwd.html">table Rwd</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="[table]tables-css.html" target="_blank"
+                                                                title="tables-css.html">偽table</a> (以 CSS 製作 div table)
+                                                        </li>
+                                                        <li>DataTables
+                                                            <p class="mb-0"><small class="badge badge-primary">版本為1.13.5以前</small></p>
+                                                            <ul>
+                                                                <li><a href="[table]tables-datatables.html" target="_blank" title="[table]tables-datatables.html">Datatables</a> (含其他套件)</li>
+                                                            </ul>
+                                                            <p class="mb-0"><small class="badge badge-primary">版本為1.13.5以後</small></p>
+                                                                <ul>                                                                   
+                                                                    <li><a href="[table]datatables-colvis.html" target="_blank" title="[table]datatables-colvis.html">Column visibility integration 條件篩選/智能篩選</a></li>
+                                                                    <li>
+                                                                        <a href="[table]datatables-custom.html" target="_blank" title="[table]datatables-custom.html">custom Condition
+                                                                            條件篩選/智能篩選</a>
+                                                                    </li>
+                                                                </ul>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Tabs-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">Tabs</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="tabs.html" target="_blank"
+                                                                title="tables-basic.html">Tabs</a> <span
+                                                                class="badge badge-success">完成</span>
+                                                        </li>
+                                                        <!-- <li>
+                                                            <a href="tabs-js.html" target="_blank" title="#">Tabs(含JS) </a>
+                                                        </li> -->
+                                                        <li>
+                                                            <a href="tabs-plugins.html" target="_blank"
+                                                                title="tabs-plugins.html">Transform Bootstrap Tabs Into
+                                                                A Dropdown On Mobile - Responsive Tabs</a><span
+                                                                class="badge badge-secondary mx-2">未做</span>
+                                                            https://www.jqueryscript.net/other/responsive-bs-tabs-dropdown.html
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" target="_blank" title="#">Convert Bootstrap Tabs
+                                                                Into Accordions In Mobile View</a> <span
+                                                                class="badge badge-secondary mx-2">未做</span>
+                                                            https://www.jqueryscript.net/accordion/Bootstrap-Tabs-Accordions-Mobile.html
+                                                        </li>
+                                                    </ul>
+                                                    <dl class="pl-4 mt-2">
+                                                        <dt>tabs(JS)應用</dt>
+                                                        <dd class="mt-2">
+                                                            <a href="tabs-application.html" target="_blank"
+                                                                title="#">tabs動畫+RWD dropdown </a>
+                                                            <span class="badge badge-success">完成</span>
+                                                        </dd>
+                                                        <dd class="mt-2">
+                                                            <a href="tabs-swiper-slider.html" target="_blank"
+                                                                title="#">tabs+ swiper(Order Tabs SwiperJS) </a>
+                                                            <span class="badge badge-danger">待試</span>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--breadcrumb-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0"></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul>
+                                                        <li>
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="sec2">
+                            <div class="section-header" id="heading2">
+                                <h4 class="section-title">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                        <i class="fas fa-minus"></i>
+                                        <i class="fas fa-plus"></i>
+                                        <i class="fal fa-clone ml-2 mr-1"></i>
+                                        <span>Extension/Plugins 套件</span>
+                                    </button>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="collapse show" aria-labelledby="heading2"
+                                data-parent="#accordionCatalog">
+                                <div class="section-body">
+                                    <!-- <h6>小標題</h6> -->
+                                    <div class="row">
+                                        <!--timeline-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">Timeline 時間軸 <span
+                                                            class="badge badge-success">完成</span></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <dl>
+                                                        <dt>平行/橫向</dt>
+                                                        <dd class="mb-0">
+                                                            <a href="timeline-h-basic.html" target="_blank"
+                                                                title="timeline-h-basic.html">純HTML/CSS</a>
+                                                        </dd>
+                                                        <dd class="mb-3">
+                                                            <a href="timeline-h-js.html" target="_blank"
+                                                                title="timeline-h-js.html">有套件、或另寫JS</a>
+                                                        </dd>
+                                                        <dt>垂直/縱向</dt>
+                                                        <dd class="mb-0">
+                                                            <a href="timeline-v-basic.html" target="_blank"
+                                                                title="timeline-v-basic.html">純HTML/CSS</a>
+                                                        </dd>
+                                                        <dd class="mb-3">
+                                                            <a href="timeline-v-js.html" target="_blank"
+                                                                title="timeline-v-js.html">有套件、或另寫JS</a>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--procgressBar-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">procgressBar 進度條<span
+                                                            class="badge badge-primary mx-2">完成，陸續增加</span></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>套件<code>Progressbar.js</code>
+                                                        <a href="https://kimmobrunfeldt.github.io/progressbar.js/"
+                                                            target="_blank">https://kimmobrunfeldt.github.io/progressbar.js/</a>
+                                                    </p>
+                                                    <dl>
+                                                        <dt>Line 直線</dt>
+                                                        <dd class="mb-3">
+                                                            <a href="ProgressBar.html" target="_blank"
+                                                                title="ProgressBar.html">ProgressBar</a>
+
+                                                        </dd>
+                                                        <dt>Circle 圓形</dt>
+                                                        <dd class="mb-3">
+                                                            <a href="ProgressBar.html" target="_blank"
+                                                                title="ProgressBar.html">ProgressBar</a>
+
+                                                        </dd>
+
+                                                    </dl>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="sec3">
+                            <div class="section-header" id="heading3">
+                                <h4 class="section-title">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                        <i class="fas fa-minus"></i>
+                                        <i class="fas fa-plus"></i>
+                                        <i class="fal fa-clone ml-2 mr-1"></i>
+                                        <span>navigation/menu 選單</span>
+                                    </button>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="collapse show" aria-labelledby="heading3"
+                                data-parent="#accordionCatalog">
+                                <div class="section-body">
+                                    <!-- <h6>小標題</h6> -->
+                                    <div class="row">
+                                        <!--sticky-nav-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">Sticky on scroll 選單固定 <span
+                                                            class="badge badge-secondary mx-2">未做</span></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <dl>
+                                                        <dt>fixed-onscroll</dt>
+                                                        <div class="text-muted small">範例來源</div>
+                                                        <a href="https://bootstrap-menu.com/detail-fixed-onscroll.html"
+                                                            target="_blank"
+                                                            class="small text-success">https://bootstrap-menu.com/detail-fixed-onscroll.html</a>
+
+                                                        <dd class="mt-2 pl-3">
+                                                            <a href="fixed-onscroll.html" target="_blank"
+                                                                title="fixed-onscroll.html">fixed-onscroll</a>
+                                                            (含JS)
+                                                        </dd>
+                                                        <dd class="mb-3 pl-3">
+                                                            <a href="fixed-onscroll-sticky.html" target="_blank"
+                                                                title="fixed-onscroll-sticky.html">fixed-onscroll-sticky</a>
+                                                        </dd>
+                                                        <dt>sticky-table-scrolling</dt>
+                                                        <div class="text-muted small">範例來源</div>
+                                                        <a href="https://css-tricks.com/sticky-table-of-contents-with-scrolling-active-states/"
+                                                            target="_blank"
+                                                            class="small text-success">https://css-tricks.com/sticky-table-of-contents-with-scrolling-active-states/</a>
+                                                        <dd class="mb-3">
+                                                            <a href="sticky-table-of-contents-with-scrolling-active-states.html"
+                                                                target="_blank"
+                                                                title="sticky-table-of-contents-with-scrolling-active-states.html">sticky-table-of-contents-with-scrolling</a>
+                                                        </dd>
+                                                    </dl>
+                                                    <hr>
+                                                    <ul class="m-0 p-0">
+                                                        <li>
+                                                            <a href="scroll-to-fix-sticky-tab-anchor-scroll.html"
+                                                                target="_blank"
+                                                                title="scroll-to-fix-sticky-tab-anchor-scroll.html">scroll
+                                                                to fix sticky tab anchor scroll</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--template 樣板-->
+                        <section id="sec4">
+                            <div class="section-header" id="heading4">
+                                <h4 class="section-title">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                        <i class="fas fa-minus"></i>
+                                        <i class="fas fa-plus"></i>
+                                        <i class="fal fa-clone ml-2 mr-1"></i>
+                                        <span>其他應用</span>
+                                    </button>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="collapse show" aria-labelledby="heading4"
+                                data-parent="#accordionCatalog">
+                                <div class="section-body">
+                                    <!-- <h6>小標題</h6> -->
+                                    <div class="row">
+                                        <!--map地圖應用-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-header border-bottom">
+                                                    <h6 class="card-title mb-0">map地圖應用</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p><span class="badge badge-warning">無障礙</span>
+                                                        html裡使用SVG地圖時，在&lt;g&gt;&lt;path&gt;&lt;circle&gt;...
+                                                        等SVG語法結構中以<code>&lt;a href="#XXX"
+                                                                                title="XXXXX"&gt;...&lt;/a&gt;</code>將其包覆，即可以使用Tab鍵操作，但其在firfox裡無法報讀，其處理方式在a連結上加入<code>role="application" aria-label="XXXX"</code>
+                                                    </p>
+                                                    <dl>
+                                                        <dt>台灣地圖</dt>
+                                                        <dd class="mt-2">
+                                                            <a href="map-region.html" target="_blank"
+                                                                title="map-region.html">北中南各區域地圖</a>                                                           
+                                                            <small>參考：礦務局產銷管理資訊系統</small>
+                                                            <span class="badge badge-success">完成</span>
+                                                        </dd>
+                                                        <dd>
+                                                            <a href="map-county.html" target="_blank"
+                                                                title="map-county.html">各縣市地圖01</a>                                                            
+                                                            <small>參考：礦務局產銷管理資訊系統</small>
+                                                            <span class="badge badge-success">完成</span>
+                                                        </dd>
+                                                        <dd>
+                                                            <a href="map-county-rwd.html" target="_blank"
+                                                                title="map-county-rwd.html">各縣市地圖02(RWD-無障礙寫法)</a>
+                                                                <small>參考：工業區燈號分級資訊展示系統</small>
+                                                        </dd>
+                                                        <dt class="mt-3">花蓮</dt>
+                                                        <dd class="mt-2">
+                                                            <a href="map-hualien.html" target="_blank"
+                                                                title="map-hualien.html">各鄉鎮01(點擊右邊顯示資訊)(RWD)</a>
+                                                            <small>參考：花蓮行研處</small>
+                                                            <span class="badge badge-success">完成</span>
+                                                        </dd>
+                                                        <dd>
+                                                            <a href="map-hualien2.html" target="_blank"
+                                                                title="fixed-onscroll-sticky.html">各鄉鎮02(點擊進內頁)</a>
+                                                            <span class="badge badge-secondary">未做</span>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--JS basic-->
+    <script src="utcCore/jquery-3.5.1.min.js"></script>
+    <script src="utcCore/bootstrap/popper.min.js"></script>
+    <script src="utcCore/bootstrap/bootstrap.min.js"></script>
+    <script src="utcCore/ciaoyukit/js/package.js"></script>
+    <script src="utcCore/ciaoyukit/js/ciaoyu.min.js"></script>
+    <script src="utcCore/ciaoyuToggle/ciaoyuToggle.min.js"></script>
+
+
+    <!---dataTables-->
+    <!-- <script src="utcCore/datatables/datatables.min.js"></script>
+    <script src="utcCore/datatables/dataTables.fixedColumns.min.js"></script> 
+
+    <script src="utcCore/sweetalert/sweetalert2.min.js"></script>
+    <script src="utcCore/swiper/js/swiper.js"></script>
+    <script src="utcCore/select2/js/select2.js"></script> -->
+
+    <script src="js/catalog.js"></script>
+
+</body>
+
+</html>

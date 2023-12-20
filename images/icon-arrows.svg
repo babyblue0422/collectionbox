@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 32 16">
+  <g id="icon-arrows" transform="translate(-264 -208)">
+    <path id="Path_7330" data-name="Path 7330" d="M0,0H32V16H0Z" transform="translate(264 208)" fill="#2eb3ff" opacity="0"/>
+    <path id="icon-arrows-2" data-name="icon-arrows" d="M0-3.937a.655.655,0,0,0,.656.656H6.125V-.446A.657.657,0,0,0,7.246.019l4.813-4.8a.657.657,0,0,0,0-.93L7.246-10.522a.657.657,0,0,0-1.121.465v2.838H.656A.655.655,0,0,0,0-6.562Z" transform="translate(274 221.715)" fill="#8ae3ff"/>
+  </g>
+</svg>

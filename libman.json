@@ -1,0 +1,378 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "cdnjs",
+      "library": "jquery@3.7.1",
+      "destination": "utcCore/jquery/",
+      "files": [
+        "jquery.js",
+        "jquery.min.js",
+        "jquery.min.map"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap@4.6.2",
+      "destination": "utcCore/bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "js/bootstrap.js.map",
+        "js/bootstrap.min.js.map",
+        "js/bootstrap.js",
+        "css/bootstrap.css",
+        "css/bootstrap.css.map",
+        "css/bootstrap.min.css",
+        "css/bootstrap.min.css.map",
+        "scss/mixins/_alert.scss",
+        "scss/mixins/_background-variant.scss",
+        "scss/mixins/_badge.scss",
+        "scss/mixins/_border-radius.scss",
+        "scss/mixins/_box-shadow.scss",
+        "scss/mixins/_breakpoints.scss",
+        "scss/mixins/_buttons.scss",
+        "scss/mixins/_caret.scss",
+        "scss/mixins/_clearfix.scss",
+        "scss/mixins/_deprecate.scss",
+        "scss/mixins/_float.scss",
+        "scss/mixins/_forms.scss",
+        "scss/mixins/_gradients.scss",
+        "scss/mixins/_grid-framework.scss",
+        "scss/mixins/_grid.scss",
+        "scss/mixins/_hover.scss",
+        "scss/mixins/_image.scss",
+        "scss/mixins/_list-group.scss",
+        "scss/mixins/_lists.scss",
+        "scss/mixins/_nav-divider.scss",
+        "scss/mixins/_pagination.scss",
+        "scss/mixins/_reset-text.scss",
+        "scss/mixins/_resize.scss",
+        "scss/mixins/_screen-reader.scss",
+        "scss/mixins/_size.scss",
+        "scss/mixins/_table-row.scss",
+        "scss/mixins/_text-emphasis.scss",
+        "scss/mixins/_text-hide.scss",
+        "scss/mixins/_text-truncate.scss",
+        "scss/mixins/_transition.scss",
+        "scss/mixins/_visibility.scss",
+        "scss/utilities/_align.scss",
+        "scss/utilities/_background.scss",
+        "scss/utilities/_borders.scss",
+        "scss/utilities/_clearfix.scss",
+        "scss/utilities/_display.scss",
+        "scss/utilities/_embed.scss",
+        "scss/utilities/_flex.scss",
+        "scss/utilities/_float.scss",
+        "scss/utilities/_interactions.scss",
+        "scss/utilities/_overflow.scss",
+        "scss/utilities/_position.scss",
+        "scss/utilities/_screenreaders.scss",
+        "scss/utilities/_shadows.scss",
+        "scss/utilities/_sizing.scss",
+        "scss/utilities/_spacing.scss",
+        "scss/utilities/_stretched-link.scss",
+        "scss/utilities/_text.scss",
+        "scss/utilities/_visibility.scss",
+        "scss/vendor/_rfs.scss",
+        "scss/bootstrap-grid.scss",
+        "scss/bootstrap-reboot.scss",
+        "scss/bootstrap.scss",
+        "scss/_alert.scss",
+        "scss/_badge.scss",
+        "scss/_breadcrumb.scss",
+        "scss/_button-group.scss",
+        "scss/_buttons.scss",
+        "scss/_card.scss",
+        "scss/_carousel.scss",
+        "scss/_close.scss",
+        "scss/_code.scss",
+        "scss/_custom-forms.scss",
+        "scss/_dropdown.scss",
+        "scss/_forms.scss",
+        "scss/_functions.scss",
+        "scss/_grid.scss",
+        "scss/_images.scss",
+        "scss/_input-group.scss",
+        "scss/_jumbotron.scss",
+        "scss/_list-group.scss",
+        "scss/_media.scss",
+        "scss/_mixins.scss",
+        "scss/_modal.scss",
+        "scss/_nav.scss",
+        "scss/_navbar.scss",
+        "scss/_pagination.scss",
+        "scss/_popover.scss",
+        "scss/_print.scss",
+        "scss/_progress.scss",
+        "scss/_reboot.scss",
+        "scss/_root.scss",
+        "scss/_spinners.scss",
+        "scss/_tables.scss",
+        "scss/_toasts.scss",
+        "scss/_tooltip.scss",
+        "scss/_transitions.scss",
+        "scss/_type.scss",
+        "scss/_utilities.scss",
+        "scss/_variables.scss"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "popper.js@1.16.1",
+      "destination": "utcCore/popper.js/",
+      "files": [
+        "umd/popper.min.js",
+        "umd/popper.min.js.map"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "sweetalert2@8.5.0",
+      "destination": "utcCore/sweetalert2/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "slick-carousel@1.8.0",
+      "destination": "utcCore/slick-carousel/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "swiper@9.4.1",
+      "destination": "utcCore/swiper/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "OwlCarousel2@2.3.4",
+      "destination": "utcCore/OwlCarousel2/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "highcharts@11.0.1",
+      "destination": "utcCore/highcharts/",
+      "files": [
+        "highcharts.js",
+        "highcharts.min.js",
+        "highcharts-more.js",
+        "modules/heatmap.min.js",
+        "modules/drilldown.min.js",
+        "modules/exporting.js",
+        "modules/export-data.js",
+        "modules/accessibility.js",
+        "modules/solid-gauge.min.js",
+        "modules/bullet.min.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "highcharts-rounded-corners@1.0.6",
+      "destination": "utcCore/highcharts-rounded-corners/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "holder@2.9.4",
+      "destination": "utcCore/holderJs/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "lazyload@2.0.0-beta.2",
+      "destination": "utcCore/lazyload/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "magnific-popup.js@1.1.0",
+      "destination": "utcCore/magnific-popup/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bs-tree@0.4.0",
+      "destination": "utcCore/bstree/",
+      "files": [
+        "dist/css/bstree.css",
+        "dist/css/bstree.min.css",
+        "dist/js/jquery.bstree.js",
+        "dist/js/jquery.bstree.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "highlight.js@9.12.0",
+      "destination": "utcCore/highlight.js/",
+      "files": [
+        "highlight.min.js",
+        "styles/default.min.css"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "fullcalendar@3.9.0",
+      "destination": "utcCore/fullcalendar/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "moment.js@2.29.4",
+      "destination": "utcCore/moment.js/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "progressbar.js@1.1.0",
+      "destination": "utcCore/progressbarjs/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "aos@3.0.0-beta.6",
+      "destination": "utcCore/aos/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "pretty-scroll@1.1.5",
+      "destination": "utcCore/prettyscroll/",
+      "files": [
+        "js/jquery-pretty-scroll.js",
+        "js/jquery-pretty-scroll.min.js",
+        "js/pretty-scroll.js",
+        "js/pretty-scroll.min.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "wowjs@1.1.3",
+      "destination": "utcCore/wowjs/",
+      "files": [
+        "css/libs/animate.css",
+        "css/libs/animate.min.css",
+        "dist/wow.js",
+        "dist/wow.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "awesomplete@1.1.5",
+      "destination": "utcCore/awesomplete/",
+      "files": [
+        "awesomplete.min.js",
+        "awesomplete.min.css.map",
+        "awesomplete.min.css",
+        "awesomplete.js",
+        "awesomplete.css"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap4-duallistbox@4.0.1",
+      "destination": "utcCore/bootstrap-duallistbox-4/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "switchery@0.8.2",
+      "destination": "utcCore/switchery/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap4-tagsinput@4.1.3",
+      "destination": "utcCore/tagsinput/",
+      "files": [
+        "tagsinput.min.js",
+        "tagsinput.min.css",
+        "tagsinput.js",
+        "tagsinput.css"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap-select@1.13.10",
+      "destination": "utcCore/bootstrap-select/",
+      "files": [
+        "js/bootstrap-select.min.js",
+        "css/bootstrap-select.css",
+        "css/bootstrap-select.css.map",
+        "css/bootstrap-select.min.css",
+        "js/bootstrap-select.js",
+        "js/bootstrap-select.js.map",
+        "js/bootstrap-select.min.js.map"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap-tooltip-custom-class@1.0.0",
+      "destination": "utcCore/bs-tooltip-custom/",
+      "files": [
+        "bootstrap-v4/bootstrap-tooltip-custom-class.css",
+        "bootstrap-v4/bootstrap-tooltip-custom-class.js",
+        "bootstrap-v4/bootstrap-tooltip-custom-class.min.css",
+        "bootstrap-v4/bootstrap-tooltip-custom-class.min.js",
+        "bootstrap-v4/bootstrap-tooltip-custom-class.scss"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "daterangepicker@3.0.5",
+      "destination": "utcCore/daterangepicker/",
+      "files": [
+        "daterangepicker.min.js",
+        "daterangepicker.min.css",
+        "daterangepicker.js",
+        "daterangepicker.css",
+        "moment.min.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "dropzone@5.5.1",
+      "destination": "utcCore/dropzone/",
+      "files": [
+        "dist/min/basic.min.css",
+        "dist/min/dropzone-amd-module.min.js",
+        "dist/min/dropzone.min.css",
+        "dist/min/dropzone.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "ion-rangeslider@2.3.1",
+      "destination": "utcCore/ionRangeSlider/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "jquery-steps@1.1.0",
+      "destination": "utcCore/jquery.steps/",
+      "files": [
+        "build/jquery.steps.js",
+        "build/jquery.steps.min.js",
+        "demo/css/jquery.steps.css",
+        "demo/css/jquery.steps.min.css"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "lazyload@2.0.0-beta.2",
+      "destination": "utcCore/lazyload/",
+      "files": [
+        "lazyload.min.js",
+        "lazyload.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "select2@4.0.10",
+      "destination": "utcCore/select2/",
+      "files": [
+        "dist/css/select2.css",
+        "dist/css/select2.min.css",
+        "dist/js/select2.full.js",
+        "dist/js/select2.full.min.js",
+        "dist/js/select2.js",
+        "dist/js/select2.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "masonry-layout@4.2.2",
+      "destination": "utcCore/masonry/",
+      "files": [
+        "dist/masonry.pkgd.js",
+        "dist/masonry.pkgd.min.js"
+      ]
+    }
+  ]
+}
