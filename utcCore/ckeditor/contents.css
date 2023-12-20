@@ -1,0 +1,678 @@
+/*
+Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+body {
+	/* Font */
+	/* Emoji fonts are added to visualise them nicely in Internet Explorer. */
+	font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 12px;
+
+	/* Text color */
+	color: #333;
+
+	/* Remove the background color to make it transparent. */
+	background-color: #fff;
+
+	margin: 20px;
+}
+
+.cke_editable {
+	font-size: 13px;
+	line-height: 1.6;
+
+	/* Fix for missing scrollbars with RTL texts. (#10488) */
+	word-wrap: break-word;
+}
+
+blockquote {
+	/* font-style: italic;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	padding: 2px 0;
+	border-style: solid;
+	border-color: #ccc;
+	border-width: 0; */
+}
+
+.cke_contents_ltr blockquote {
+	padding-left: 20px;
+	padding-right: 8px;
+	border-left-width: 5px;
+}
+
+.cke_contents_rtl blockquote {
+	padding-left: 8px;
+	padding-right: 20px;
+	border-right-width: 5px;
+}
+
+a {
+	color: #0782C1;
+}
+
+ol,
+ul,
+dl {
+	/* IE7: reset rtl list margin. (#7334) */
+	*margin-right: 0px;
+	/* Preserved spaces for list items with text direction different than the list. (#6249,#8049)*/
+	padding: 0 40px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	line-height: 1.2;
+}
+
+hr {
+	border: 0px;
+	border-top: 1px solid #ccc;
+}
+
+img.right {
+	border: 1px solid #ccc;
+	float: right;
+	margin-left: 15px;
+	padding: 5px;
+}
+
+img.left {
+	border: 1px solid #ccc;
+	float: left;
+	margin-right: 15px;
+	padding: 5px;
+}
+
+pre {
+	white-space: pre-wrap;
+	/* CSS 2.1 */
+	word-wrap: break-word;
+	/* IE7 */
+	-moz-tab-size: 4;
+	tab-size: 4;
+}
+
+.marker {
+	background-color: Yellow;
+}
+
+span[lang] {
+	font-style: italic;
+}
+
+figure {
+	text-align: center;
+	outline: solid 1px #ccc;
+	background: rgba(0, 0, 0, 0.05);
+	padding: 10px;
+	margin: 10px 20px;
+	display: inline-block;
+}
+
+figure>figcaption {
+	text-align: center;
+	display: block;
+	/* For IE8 */
+}
+
+a>img {
+	padding: 1px;
+	margin: 1px;
+	border: none;
+	outline: 1px solid #0782C1;
+}
+
+/* Widget Styles */
+.code-featured {
+	border: 5px solid red;
+}
+
+.math-featured {
+	padding: 20px;
+	box-shadow: 0 0 2px rgba(200, 0, 0, 1);
+	background-color: rgba(255, 0, 0, 0.05);
+	margin: 10px;
+}
+
+.image-clean {
+	border: 0;
+	background: none;
+	padding: 0;
+}
+
+.image-clean>figcaption {
+	font-size: .9em;
+	text-align: right;
+}
+
+.image-grayscale {
+	background-color: white;
+	color: #666;
+}
+
+.image-grayscale img,
+img.image-grayscale {
+	filter: grayscale(100%);
+}
+
+.embed-240p {
+	max-width: 426px;
+	max-height: 240px;
+	margin: 0 auto;
+}
+
+.embed-360p {
+	max-width: 640px;
+	max-height: 360px;
+	margin: 0 auto;
+}
+
+.embed-480p {
+	max-width: 854px;
+	max-height: 480px;
+	margin: 0 auto;
+}
+
+.embed-720p {
+	max-width: 1280px;
+	max-height: 720px;
+	margin: 0 auto;
+}
+
+.embed-1080p {
+	max-width: 1920px;
+	max-height: 1080px;
+	margin: 0 auto;
+}
+
+
+/*===================== custom inner ckeditor =====================*/
+
+/* font setting */
+@import url('../fontawesome/css/fontawesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+/* font-family: 'Maven Pro', sans-serif; */
+/* @import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css'); */
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap&subset=chinese-traditional");
+/* font-family: "Noto Sans TC" , "微軟正黑體" ;*/
+@import url('https://use.fontawesome.com/releases/v5.11.2/css/all.css');
+/* free fontawesome */
+/* @import url('https://pro.fontawesome.com/releases/v5.11.2/css/all.css'); */
+/*pro fontawesome */
+
+/* content setting */
+a {
+	color: #337ab7;
+}
+
+a:focus,
+a:hover {
+	color: #23527c;
+	text-decoration: underline;
+}
+
+ol,
+ul,
+dl {
+	padding-left: 20px;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	line-height: 1.2;
+}
+
+
+h1 {
+	line-height: 1.25em;
+}
+
+h2 {
+	font-size: 25px;
+	text-align: left;
+	margin-top: 40px;
+	margin-bottom: 15px;
+	line-height: 1.25em;
+}
+
+h3 {
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 15px;
+	margin-top: 40px;
+	line-height: 1.25em;
+}
+
+h4 {
+	font-size: 20px;
+	margin-bottom: 15px;
+	margin-top: 40px;
+	font-style: italic;
+	color: #3b90a5;
+	font-weight: 600;
+	line-height: 1.25em;
+}
+
+p {
+	font-family: 'Maven Pro', Verdana, '微軟正黑體', sans-serif;
+	margin-bottom: 15px;
+	font-size: 18px;
+	line-height: 25px;
+}
+
+blockquote {
+	/* font-family: 'Maven Pro', Verdana, '微軟正黑體', sans-serif;
+	margin: 30px 0;
+	padding: 15px 25px;
+	font-size: 24px;
+	line-height: 35px;
+	border: #3b90a5 solid 3px;
+	color: #3b90a5; */
+}
+
+hr {
+	border: 0px;
+	border-top: 1px solid #ccc;
+}
+
+img.right {
+	border: 1px solid #ccc;
+	float: right;
+	margin-left: 15px;
+	padding: 5px;
+}
+
+img.left {
+	border: 1px solid #ccc;
+	float: left;
+	margin-right: 15px;
+	padding: 5px;
+}
+
+pre {
+	white-space: pre-wrap;
+	/* CSS 2.1 */
+	word-wrap: break-word;
+	/* IE7 */
+	-moz-tab-size: 4;
+	tab-size: 4;
+}
+
+.marker {
+	background-color: Yellow;
+}
+
+span[lang] {
+	font-style: italic;
+}
+
+
+
+/* Widget Styles */
+.code-featured {
+	border: 5px solid red;
+}
+
+.math-featured {
+	padding: 20px;
+	box-shadow: 0 0 2px rgba(200, 0, 0, 1);
+	background-color: rgba(255, 0, 0, 0.05);
+	margin: 10px;
+}
+
+.image-clean {
+	border: 0;
+	background: none;
+	padding: 0;
+}
+
+.image-clean>figcaption {
+	font-size: .9em;
+	text-align: right;
+}
+
+.image-grayscale {
+	background-color: white;
+	color: #666;
+}
+
+.image-grayscale img,
+img.image-grayscale {
+	filter: grayscale(100%);
+}
+
+.embed-240p {
+	max-width: 426px;
+	max-height: 240px;
+	margin: 0 auto;
+}
+
+.embed-360p {
+	max-width: 640px;
+	max-height: 360px;
+	margin: 0 auto;
+}
+
+.embed-480p {
+	max-width: 854px;
+	max-height: 480px;
+	margin: 0 auto;
+}
+
+.embed-720p {
+	max-width: 1280px;
+	max-height: 720px;
+	margin: 0 auto;
+}
+
+.embed-1080p {
+	max-width: 1920px;
+	max-height: 1080px;
+	margin: 0 auto;
+}
+
+/* rwd video */
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%;
+	/* 16:9 */
+	margin: 25px 0;
+	text-align: left;
+}
+
+.videoWrapper iframe {
+	position: absolute;
+	left: 0;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+
+figure {
+	display: block;
+	margin-block-start: 0;
+	margin-block-end: 0;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	background: #fff;
+	padding: 0;
+	outline: none;
+	text-align: left;
+}
+
+
+figure img {
+	margin: 30px 0px 5px 0;
+}
+
+
+figure>figcaption {
+	text-align: left;
+	margin: 10px 0 20px 0;
+	font-size: 15px;
+	color: #727272;
+	line-height: 1.2em;
+}
+
+figure>figcaption:before {
+	content: '\f0de';
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	display: inline;
+	font-size: 18px;
+	margin-right: 5px;
+	vertical-align: sub;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table td,
+table th {
+	display: table-cell;
+	vertical-align: inherit;
+	font-weight: bold;
+	text-align: -internal-center;
+
+	padding: .75rem;
+	vertical-align: top;
+	border-top: 1px solid #dee2e6;
+}
+
+.url-list table tbody tr th {
+	width: 30%;
+}
+
+.url-list table caption {
+	background: #f7f7f7;
+	padding: 0.5rem;
+	text-align: left;
+}
+
+
+.card-list.row {
+	background: #ddd;
+	border: #eee solid 1px;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.card-list.row div[class*='col-md-'] .card,
+.card.single {
+    background: #fff;
+    padding: 10px;
+	border: #eee solid 1px;
+}
+
+.card-list.row .card-title,
+.card.single .card-title {
+	font-size: 18px;
+}
+.card.single {
+	width: 20%;
+	margin: 2.5%;
+}
+.card-list.row .card p,
+.card.single p {
+	font-size: 14px;
+	margin: 5px 0;
+}
+
+/* bs */
+.bootstrap-tabs {}
+.bootstrap-tabs .nav.nav-tabs {
+	list-style: none;
+	padding: 0;
+    overflow: auto;
+}
+.bootstrap-tabs .nav.nav-tabs li {
+	float: left;
+	padding: 10px;
+	border: #8ab2b8 solid 1px;
+	background: #fff;
+	border-bottom: none;
+	border-radius: 5px 5px 0 0;
+}
+
+.bootstrap-tabs .tab-content {
+	clear: both;
+	border: #8ab2b8 solid 1px;
+	padding: 15px;
+    margin-top: -12px;
+}
+
+.bootstrap-tabs .tab-content .tab-pane {
+	border: #ddd solid 1px;
+	padding: 10px;
+	margin-top: 5px;
+}
+
+/* add custom templates 上稿體例 */
+.cke_editable {
+    font-size: 1rem;
+    color: #2d2d2d;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+.cke_editable .foreword {
+    border : 3px solid;
+    margin: 30px 0;
+    padding: 15px 25px;
+    font-size: 1.5rem;
+    color: #2d2d2d;
+}
+
+.cke_editable h2 , .cke_editable h3, .cke_editable h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+
+}
+.cke_editable h2 {
+    font-size: 1.5rem;
+
+}
+.cke_editable h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.cke_editable h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-style: italic;
+}
+.cke_editable p {
+    color: #555;
+}
+.cke_editable ol, .cke_editable ul {
+    margin: 1rem 0;
+}
+.cke_editable ol li, .cke_editable ul li {
+    margin-bottom: 1rem;
+    color: #555;
+}
+.cke_editable .italic {
+    font-style: italic;
+}
+.cke_editable .line {
+    text-decoration: underline;
+}
+.cke_editable .highlight {
+    background-color: #ffe888;
+}
+.cke_editable .remark {
+    color: #799c48;
+    font-size: 0.875rem;
+    margin: 0 2px;
+}
+.cke_editable .remark-content {
+    font-size: 0.875rem;
+    padding: 25px;
+    background: #eee;
+    margin: 15px 0 20px;
+    display: none;
+}
+.cke_editable  .remark-content span {
+    font-weight: bold;
+    color: #799c48;
+}
+.cke_editable blockquote {
+    padding: 25px 45px;
+    margin: 25px 0;
+    position: relative;
+	font-size: 1.25rem;
+	font-weight: 400;
+	border: none;
+}
+.cke_editable blockquote .from{
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #555;
+    margin-top: 5px;
+}
+.cke_editable blockquote::before,  .cke_editable blockquote::after {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 900;
+    margin-right: 5px;
+    color: #ddd;
+    position: absolute;
+    font-size: 1.75rem;
+}
+.cke_editable blockquote::before {
+       content: '\f10d';
+       top: 5px;
+       left: 5px;
+}
+.cke_editable blockquote::after {
+    content: '\f10e';
+    right: 5px;
+    bottom: 5px;
+}
+.cke_editable p.tip {
+    border-left: #00afc8 solid 3px;
+    padding: 0 10px;
+    font-style: italic;
+    font-size: .9rem;
+}
+.cke_editable img {
+    max-width: 100%;
+    margin: 30px auto;
+    display: block;
+    height: auto;
+}
+.cke_editable figure {
+    text-align: center;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.cke_editable figcaption {
+    text-align: left;
+    margin: 3px 0 30px 0;
+    font-size: .85rem;
+    color: #6c757d;
+    letter-spacing: .5px;
+    text-align: center;
+}
+.cke_editable figure img {
+    margin-bottom: 0;
+}
+.cke_editable img.img-icon {
+    margin: 0 2px;
+    display: inline;
+}
+
+.cke_editable iframe{
+    max-width: 100%;
+    width: 100% !important;
+}
+.cke_editable  .videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    margin: 25px 0;
+    text-align: left;
+}
+.cke_editable .videoWrapper iframe {
+    position: absolute;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+.cke_editable table caption {
+    font-size: .85rem;
+    letter-spacing: .5px;
+}
