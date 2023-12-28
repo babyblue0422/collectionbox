@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="rating" content="general" />
+    <meta name="author" content="" />
+
+    <title>EventCalendar - Utrust Web UI Kits</title>
+
+    <link rel="author license" href="" />
+    <link rel="shortcut icon" href="../../../favicon.ico" />
+    <link rel="icon" type="image/gif" href="../../../favicon.gif" />
+
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="eventCalendar.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <!-- 原始日曆調整過class -->
+    <div class="calendar-wrap">
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <div class="btn-prevMonth"><i class="fas fa-chevron-left"></i></div>
+                <div class="header-title"><span class="calendarMonthYear">108年11月</span></div>
+                <div class="btn-nextMonth"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-calendar">
+                    <thead>
+                        <tr>
+                            <td>日</td>
+                            <td>一</td>
+                            <td>二</td>
+                            <td>三</td>
+                            <td>四</td>
+                            <td>五</td>
+                            <td>六</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="notCurrMonth"><span class="numberDate">27</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">28</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">29</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">30</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">31</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">1</span>
+                                <div class="event-cont hasEvent">2</div>
+                            </td>
+                            <td><span class="numberDate">2</span>
+                                <div class="event-cont"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="numberDate">3</span>
+                                <div class="event-cont hasEvent">1</div>
+                            </td>
+                            <td><span class="numberDate">4</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">5</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">6</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">7</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">8</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">9</span>
+                                <div class="event-cont"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="numberDate">10</span>
+                                <div class="event-cont hasEvent">3</div>
+                            </td>
+                            <td><span class="numberDate">11</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">12</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">13</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">14</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">15</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">16</span>
+                                <div class="event-cont"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="numberDate">17</span>
+                                <div class="event-cont hasEvent">3</div>
+                            </td>
+                            <td><span class="numberDate">18</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">19</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="today"><span class="numberDate">20</span>
+                                <div class="event-cont hasEvent">3</div>
+                            </td>
+                            <td><span class="numberDate">21</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">22</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">23</span>
+                                <div class="event-cont"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="numberDate">24</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">25</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="selected"><span class="numberDate">26</span>
+                                <div class="event-cont hasEvent">3</div>
+                            </td>
+                            <td><span class="numberDate">27</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">28</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">29</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td><span class="numberDate">30</span>
+                                <div class="event-cont"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="notCurrMonth"><span class="numberDate">1</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">2</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">3</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">4</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">5</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">6</span>
+                                <div class="event-cont"></div>
+                            </td>
+                            <td class="notCurrMonth"><span class="numberDate">7</span>
+                                <div class="event-cont"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!-- calendar-wrap END -->
+
+    <script src="../jquery-3.5.1.min.js" ></script>
+    <script src="eventCalendar.js"></script>
+</body>
+
+</html>
