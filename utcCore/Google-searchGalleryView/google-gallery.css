@@ -1,0 +1,567 @@
+.btn-link-warning,
+.btn-link-warning:focus {
+    color: #f4d512;
+}
+
+.btn-link-warning:hover {
+    color: #fff000;
+}
+
+.btn-link-warning:active {
+    color: #f4d512;
+}
+
+.page-title {
+    margin: 0 0 10px;
+}
+
+.backTotop {
+    display: none;
+    color: #fff;
+    background-color: #0072BC;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 40px;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    z-index: 9999;
+    text-decoration: none;
+    overflow: visible;
+}
+
+.backTotop:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.backTotop:after {
+    content: "Top";
+    font-size: 10px;
+    text-align: center;
+    color: #0072BC;
+    line-height: 16px;
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+    width: 100%;
+}
+
+.actionbar {
+    font-size: 13px;
+}
+
+.actionbar .list-inline {
+    margin-bottom: 0;
+    margin-right: -5px;
+}
+
+.actionbar .list-inline>li {
+    vertical-align: middle;
+    padding: 0 5px;
+}
+
+.actionbar .list-inline>li .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.actionbar .dropdown-toggle {
+    padding: 0;
+    margin-top: -4px;
+}
+
+.actionbar .estimated-count {
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: lowercase;
+}
+
+.actionbar .estimated-count .spname {
+    text-transform: none;
+}
+
+.actionbar h2,
+.actionbar .list-line-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.actionbar h2 {
+    display: inline;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: inherit;
+}
+
+.toggleView span {
+    display: inline-block;
+    cursor: pointer;
+    line-height: normal;
+    font-size: 21px;
+    padding: 1px 6px 0;
+    margin: 0;
+    min-height: 28px;
+    color: #B2B2B2;
+}
+
+.toggleView span i {
+    text-align: center;
+    margin-right: -2px;
+}
+
+.toggleView span.active {
+    color: #333;
+}
+
+.viewchange {}
+
+.pictureView,
+.galleryview {}
+
+.viewchange .resultitem {
+    vertical-align: top;
+    display: block;
+    text-align: center;
+    margin: 10px 12px 0;
+    position: relative;
+}
+
+.viewchange .resulttitle {
+    margin-top: 0;
+}
+
+.viewchange .resulttitle a {
+    display: block;
+    text-align: left;
+}
+
+.viewchange .resultitem .resultbox,
+.viewchange .resultitem .resultbox .resultdecs {
+    display: block;
+    width: auto;
+    margin: 0;
+}
+
+.viewchange .resultitem .box {
+    vertical-align: top;
+    display: block;
+    border: solid 1px #d9d9d9;
+    text-align: center;
+    overflow: hidden;
+    background: transparent url() no-repeat 50%;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+}
+
+.viewchange .resultitem>.box>a.clickevent {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: auto;
+}
+
+.img-responsive {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+.viewchange .resultitem>p.resulttitle {
+    padding: 4px 0;
+}
+
+.listview {
+    columns: 2 15px;
+}
+
+.listview .resultitem {
+    margin: 0 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.listview .resultitem .box {
+    width: 80px;
+    height: 80px;
+    vertical-align: top;
+    display: inline-block;
+    line-height: 55px;
+    border: solid 1px #d9d9d9;
+    text-align: center;
+    background-image: none;
+    padding: 0;
+}
+
+.listview .resultitem .detailview {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 100px);
+    text-align: left;
+}
+
+.listview .resultitem .detailview .resulttitle {
+    font-weight: bold;
+}
+
+.listview .resultitem .box .iconlinks,
+.listview .resultitem .detailview .controllers,
+.listview .resultitem .detailview .thumbImage {
+    display: none;
+}
+
+.listview .resultitem .detailview .thumbMeta .metadata>p {
+    display: inline;
+}
+
+.smallview .resultitem,
+.smallview .resultitem .box {
+    width: 6.4em;
+    padding: 0;
+}
+
+.smallview .resultitem .box {
+    height: 6.4em;
+    line-height: 6em;
+}
+
+.thumbnails .resultitem,
+.thumbnails .resultitem .box {
+    width: 9.3em;
+    padding: 0;
+}
+
+.thumbnails .resultitem .box {
+    height: 9.4em;
+    line-height: 9.05em;
+}
+
+.galleryview .resultitem,
+.galleryview .resultitem .box {
+    width: 15em;
+    padding: 0;
+}
+
+.galleryview .resultitem .box {
+    height: 15em;
+    line-height: 14em;
+    background-image: none;
+}
+
+.thumbnails .resultitem .content,
+.galleryview .resultitem .content,
+.galleryview .resultitem .scopeName,
+.thumbnails .resultitem .scopeName {
+    display: none;
+}
+
+.picflex {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+}
+
+.picflex:after {
+    content: '';
+    flex-grow: 1;
+    display: inline-block;
+    min-width: 50%;
+}
+
+.picflex .resultitem {
+    margin: 10px;
+    position: static;
+    width: auto;
+    border: 0;
+    height: 180px;
+    min-width: 85px;
+    flex-grow: 1;
+}
+
+.picflex .resultitem .box {
+    border: none;
+    width: 100%;
+    height: 180px;
+    line-height: normal;
+}
+
+.picflex .resultitem.open {
+    height: 675px;
+}
+
+.picflex .resultitem.open:after {
+    content: "";
+    font-size: 0px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0px 20px 20px 20px;
+    border-color: transparent transparent #666666 transparent;
+    top: -10px;
+    position: relative;
+}
+
+.picflex .resultitem .box>i {
+    display: block;
+}
+
+.picflex .resultitem .box img {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    left: 50%;
+    vertical-align: bottom;
+}
+
+.picflex .resultitem .box .iconlinks {
+    overflow: hidden;
+    position: absolute;
+    height: 0px;
+    top: 180px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .5);
+    text-align: center;
+    transition: ease-in-out 0.2s;
+}
+
+.picflex .resultitem .box:hover .iconlinks {
+    transition: ease-in-out 0.2s;
+    height: 40px;
+    padding: 10px 0;
+    top: 140px;
+}
+
+.picflex .resultitem .box .iconlinks .icon-sprite {
+    display: inline-block;
+    padding: 0 4px;
+}
+
+.picflex .resultitem .box .iconlinks .icon-sprite i.glyphicon {
+    font-size: 20px;
+}
+
+.picflex .icon-sprite {
+    background: transparent none;
+    color: #fff;
+    text-indent: 0;
+    width: auto;
+    height: auto;
+}
+
+.picflex .icon-sprite:hover,
+.picflex .icon-sprite.cart-add {
+    color: #2b0;
+}
+
+.picflex .icon-sprite.cart-add:hover {
+    color: #d01323;
+}
+
+.picflex .detailview {
+    display: none;
+    background: #666666;
+    height: 475px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 20px;
+    overflow: auto;
+}
+
+.picflex .resultitem.open .detailview {
+    display: block;
+}
+
+.picflex .resulttitle {
+    text-align: left;
+    line-height: 45px;
+    font-weight: bold;
+    border-bottom: 1px solid #ACACAC !important;
+    margin-bottom: 15px;
+}
+
+.picflex .resulttitle span.product {
+    padding-right: 10px;
+    border-right: 1px solid #fff;
+    color: #e4e4e4;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.picflex .resulttitle span.productid {
+    color: #fff;
+    font-weight: bold;
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+.picflex .detailview .resulttitle .controllers {
+    text-align: right;
+}
+
+.picflex .detailview .resulttitle .controllers a {
+    display: inline-block;
+    font-size: 16px;
+    background-color: #f4d512;
+    line-height: 26px;
+    border-radius: 50px;
+    width: 24px;
+    text-align: center;
+    height: 24px;
+    color: #666666;
+    margin: 0 10px;
+}
+
+.picflex .detailview .resulttitle .controllers a:focus {
+    background-color: #f4d512;
+}
+
+.picflex .detailview .resulttitle .controllers a:active {
+    background-color: #fff000;
+}
+
+.picflex .detailview .resulttitle .controllers a:hover {
+    background-color: #f4d512;
+}
+
+.picflex .resultitem:first-child .detailview .resulttitle .controllers a.left-arrow,
+.picflex .resultitem:last-child .detailview .resulttitle .controllers a.right-arrow {
+    display: none;
+}
+
+.picflex .detailview ul.image-links {
+    margin: 0;
+    padding: 0;
+    padding: 14px 0 0;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.picflex .detailview ul.image-links li a {
+    font-size: 13px;
+    padding: 0;
+    text-decoration: none;
+}
+
+.picflex .detailview ul.image-links li.addToOrder a:after {
+    content: attr(title);
+}
+
+.picflex .detailview>div {
+    border: none;
+}
+
+.picflex .detailview .thumbMeta {
+    text-align: left;
+    /* max-height:400px;
+        overflow:auto;*/
+}
+
+.picflex .detailview .thumbMeta .metadata {
+    padding-right: 10px;
+}
+
+.picflex .detailview .thumbMeta .metalabel {
+    color: #e4e4e4;
+    font-weight: normal;
+    font-size: 13px;
+    border-right: 1px solid #fff;
+    padding-right: 5px;
+}
+
+.picflex .detailview .thumbMeta .metalabel:after {
+    content: "";
+}
+
+.picflex .detailview .thumbMeta .metavalue {
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    padding-left: 5px;
+    line-height: 20px;
+}
+
+.picflex .detailview .thumbMeta .metavalue.release {
+    color: #fff;
+}
+
+.picflex .detailview .thumbMeta span {
+    line-height: normal;
+    display: inline-block;
+}
+
+.picflex .detailview .thumbImage {
+    line-height: normal;
+    overflow: inherit;
+}
+
+.picflex .detailview .thumbImage .detail-picture {
+    padding: 0 5px 0px 10px;
+}
+
+.picflex .detailview .thumbImage .detail-img {
+    width: 100%;
+    height: 364px;
+    background: #fff url() no-repeat 50%;
+    background-size: cover;
+}
+
+@media screen and (min-width:768px) {
+    .picflex:after {
+        content: '';
+        flex-grow: 1;
+        display: inline-block;
+        min-width: 55%;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .picflex:after {
+        content: '';
+        flex-grow: 1;
+        display: inline-block;
+        min-width: 70%;
+    }
+    .picflex .detailview .thumbMeta .metacolmn {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 25px;
+        -moz-column-gap: 25px;
+        column-gap: 25px;
+        column-fill: auto;
+        margin: 0;
+        min-height: 375px;
+    }
+}
+
+.toggleView span {
+    display: inline-block;
+    cursor: pointer;
+    line-height: normal;
+    font-size: 21px;
+    padding: 1px 6px 0;
+    margin: 0;
+    min-height: 28px;
+    color: #B2B2B2;
+}
+
+.toggleView span i {
+    text-align: center;
+    margin-right: -2px;
+}
+
+.toggleView span.active {
+    color: #333;
+}

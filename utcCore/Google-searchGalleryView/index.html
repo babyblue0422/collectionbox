@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>jQuery searchGalleryView Plugin Demo</title>
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="google-gallery.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse ">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/google-gallery.html">Google Gallery view</a>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="actionbar">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h1 class="page-title">Google Gallery view</h1>
+                </div>
+                <div class="col-xs-6">
+                    <ul class="list-inline pull-right text-right">
+                        <!--<div id="image_size_slider"></div>.smallview, .thumbnails, .galleryview-->
+                        <li style="width: 50%;">
+                            <div id="datepicker" class="input-group date">
+                                <input type="text" id="date-from" class="form-control pickdate" name="start" value="" onkeydown="return false" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input type="text" id="date-to" class="form-control pickdate" name="start" value="" onkeydown="return false" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="visible-scope toggleView"><span class="active" data-view="picflex"><i class="glyphicon glyphicon-th"></i></span><span class="" data-view="listview"><i class="glyphicon glyphicon-th-list"></i></span></div>
+                        </li>
+                        <li>
+                            <div class="visible-picture image-size">
+
+                                <div class="list-line-item">
+                                    <div class="dropdown">
+                                        <div class="resize-item dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><span>Result size:</span><span class="resize_label">Medium</span>
+                                            <span class="caret"></span></div>
+                                        <ul class="resize-dropdown dropdown-menu">
+                                            <li><a href="#" data-action-name="setCount" data-size="smallview">Small</a></li>
+                                            <li><a href="#" data-action-name="setCount" data-size="thumbnails">Medium</a></li>
+                                            <li><a href="#" data-action-name="setCount" data-size="galleryview">Large</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sortswitch">
+                            <div class="list-line-item">
+                                <div class="dropdown">
+                                    <div class="select-item dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><span>Sort By:</span><span class="orderby_label">Updated</span>
+                                        <span class="caret"></span></div>
+                                    <ul class="sort-dropdown dropdown-menu">
+                                        <li><a href="#" data-action-name="changeOrderBy" data-value="Updated" data-sort="modifedOrCreatedCalcDateVal">Updated</a></li>
+                                        <li><a href="#" data-action-name="changeOrderBy" data-value="Best match" data-sort="mes:relevance">Best match</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="pictureView viewchange picflex">
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/350x400')" class="box thumbnailurl" data-imgwidth="350" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x250')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="250">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x350')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="350">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/261x400')" class="box thumbnailurl" data-imgwidth="261" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/387x400')" class="box thumbnailurl" data-imgwidth="387" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x350')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="350">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x350')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="350">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/300x400')" class="box thumbnailurl" data-imgwidth="300" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x200')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="200">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/300x250')" class="box thumbnailurl" data-imgwidth="300" data-imgheight="250">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x350')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="350">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/350x400')" class="box thumbnailurl" data-imgwidth="350" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/300x400')" class="box thumbnailurl" data-imgwidth="300" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/350x400')" class="box thumbnailurl" data-imgwidth="350" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/300x400')" class="box thumbnailurl" data-imgwidth="300" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x200')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="200">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/300x250')" class="box thumbnailurl" data-imgwidth="300" data-imgheight="250">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/350x400')" class="box thumbnailurl" data-imgwidth="350" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/300x400')" class="box thumbnailurl" data-imgwidth="300" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/400x350')" class="box thumbnailurl" data-imgwidth="400" data-imgheight="350">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/350x400')" class="box thumbnailurl" data-imgwidth="350" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/300x400')" class="box thumbnailurl" data-imgwidth="300" data-imgheight="400">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+            <div class="resultitem">
+                <!-- Start of thumbnail display -->
+                <div style="background-image:url('http://via.placeholder.com/200x300')" class="box thumbnailurl" data-imgwidth="200" data-imgheight="300">
+                    <a href="javascript:void(0);" class="clickevent"></a>
+                    <div class="iconlinks">
+                        <a id="orderlink_Picture Title" data="Picture Title.jpg" href="javascript:void(0);" title="Add to order" class="icon-sprite"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        <a href="javascript:void(0);" target="_self" title="Download" class="icon-sprite"><i class="glyphicon glyphicon-cloud-download"></i></a>
+                    </div>
+                </div>
+                <div class="detailview container-fluid">
+                    <div class="resulttitle row">
+                        <div class="col-xs-6 productdetails">
+                            <span class="product">Picture Id </span>
+                            <span class="productid">Picture Title</span>
+                        </div>
+                        <div class="col-xs-6 controllers">
+                            <a href="javascript:void(0);" class="detailPrev left-arrow" onclick="prevItem(this);"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a href="javascript:void(0);" class="detailNext right-arrow" onclick="nextItem(this);"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a href="#detailClose" class="detailClose remove"><i class="glyphicon glyphicon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="thumbImage col-sm-6">
+                            <div class="detail-picture">
+                                <div class="detail-img" style="background-image:url('http://via.placeholder.com/400x400')">
+                                </div>
+                                <ul class="image-links">
+                                    <li class="viewLarge"><a class="btn btn-link btn-link-warning" id="viewLarge_Picture Title.jpg" href="javascript:void(0);">View Large Image</a></li>
+                                    <li class="addToOrder">
+                                        <a class="btn btn-link btn-link-warning orderClick" href="javascript:void(0);" title="Add to order"></a>
+                                    </li>
+                                    <li class="download"><a class="btn btn-link btn-link-warning" href="javascript:void(0);" target="_self">Download</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thumbMeta col-sm-6">
+                            <div class="metadata metacolmn">
+                                <p><span class="metalabel">Updated</span><span class="metavalue">14 June 2017</span></p>
+                                <p><span class="metalabel">Date of release</span><span class="metavalue release">30 September 2017</span></p>
+                                <p><span class="metalabel">Category</span><span class="metavalue">Miscellaneous</span></p>
+                                <p><span class="metalabel">Area</span><span class="metavalue">Others</span></p>
+                                <p><span class="metalabel">Area section</span><span class="metavalue">Products</span></p>
+                                <p><span class="metalabel">Product name</span><span class="metavalue">Aleskär</span></p>
+                                <p><span class="metalabel">Product type</span><span class="metavalue">Basket</span></p>
+                                <p><span class="metalabel">Product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product names</span><span class="metavalue" style="word-break: break-all;">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product types</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Other product description</span><span class="metavalue">Test 30 05 17</span></p>
+                                <p><span class="metalabel">Produced for</span><span class="metavalue">test</span></p>
+                                <p><span class="metalabel">Year</span><span class="metavalue">2016</span></p>
+                                <p><span class="metalabel">People</span><span class="metavalue">Without</span></p>
+                                <p><span class="metalabel">Clipping path available</span><span class="metavalue">No</span></p>
+                                <p><span class="metalabel">Copyright</span><span class="metavalue">Product owner</span></p>
+                                <p><span class="metalabel">Agency</span><span class="metavalue">Product company</span></p>
+                                <p><span class="metalabel">Animals</span><span class="metavalue">Without</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of thumbnail display -->
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="google-gallery.min.js"></script>
+</body>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</html>
